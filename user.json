@@ -1,0 +1,26 @@
+[
+    {
+        "name": "meer",
+        "account_no": "meer123",
+        "password": "abc",
+        "balance": 40000
+    },
+    {
+        "name": "sana",
+        "account_no": "sana012",
+        "password": "veryeasy",
+        "balance": 60000
+    },
+    {
+        "name": "hamza",
+        "account_no": "hamza182",
+        "password": "last",
+        "balance": 70000
+    },
+    {
+        "name": "huma",
+        "account_no": "huma023",
+        "password": "Iamhuma",
+        "balance": 60000
+    }
+]
