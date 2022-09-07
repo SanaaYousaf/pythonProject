@@ -26,8 +26,9 @@ class User:
         temp['password'] = key['password']
         temp['balance'] = key['balance']
 
+    @staticmethod
     def is_valid(acc_no, password):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         for key in mydata:
@@ -35,8 +36,9 @@ class User:
                 user = User(key['name'], key['account_no'], key['password'], key['balance'])
                 return user
 
+    @staticmethod
     def is_valid_acc(acc_no):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         for key in mydata:
@@ -46,7 +48,7 @@ class User:
             return False
 
     def deposit(self, amount):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -68,7 +70,7 @@ class User:
             f.write(json.dumps(new_data, indent=4))
 
     def withdraw(self, amount):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -90,7 +92,7 @@ class User:
             f.write(json.dumps(new_data, indent=4))
 
     def transfer(self, to_acc_no, amount):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -119,7 +121,7 @@ class User:
 
     @staticmethod
     def unique(acc_no):
-        with open("user.json", 'r') as j:
+        with open("user.json", 'r+') as j:
             mydata = json.load(j)
         for key in mydata:
             if key["account_no"] == acc_no:
@@ -127,7 +129,7 @@ class User:
         return False
 
     def show_profile(self):
-        with open("user.json", 'r') as j:
+        with open("user.json", 'r+') as j:
             mydata = json.load(j)
         for key in mydata:
             if key["account_no"] == self.account_no:

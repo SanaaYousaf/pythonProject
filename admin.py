@@ -7,17 +7,18 @@ import json
 class Admin:
     def __init__(self, name, id, password):
         self.name = name
-        self.id =id
+        self.id = id
         self.password = password
 
     def get_id(self):
-        self.id
+        return self.id
 
     def get_name(self):
-        self.name
+        return self.name
 
+    @staticmethod
     def is_valid_acc(id):
-        jsonfile = open("admin.json", "r")
+        jsonfile = open("admin.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         for key in mydata:
@@ -28,7 +29,7 @@ class Admin:
 
     @staticmethod
     def add_user(self):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -47,7 +48,7 @@ class Admin:
 
     @staticmethod
     def del_user(account_no):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -64,13 +65,13 @@ class Admin:
 
     @staticmethod
     def show():
-        with open("user.json", 'r') as j:
+        with open("user.json", 'r+') as j:
             mydata = json.load(j)
             print(mydata)
 
     @staticmethod
     def show_user_profile(acc_no):
-        with open("user.json", 'r') as j:
+        with open("user.json", 'r+') as j:
             mydata = json.load(j)
         for key in mydata:
             if key["account_no"] == acc_no:
@@ -78,7 +79,7 @@ class Admin:
 
     @staticmethod
     def search_user(acc_no):
-        jsonfile = open("user.json", "r")
+        jsonfile = open("user.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         for key in mydata:
@@ -93,7 +94,7 @@ class Admin:
         temp['password'] = key['password']
 
     def add_admin(self):
-        jsonfile = open("admin.json", "r")
+        jsonfile = open("admin.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -109,8 +110,9 @@ class Admin:
         with open("admin.json", "w") as f:
             f.write(json.dumps(new_data, indent=4))
 
+    @staticmethod
     def del_admin(id):
-        jsonfile = open("admin.json", "r")
+        jsonfile = open("admin.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -126,7 +128,7 @@ class Admin:
             f.write(json.dumps(new_data, indent=4))
 
     def change_password(self, password):
-        jsonfile = open("admin.json", "r")
+        jsonfile = open("admin.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         new_data = []
@@ -157,8 +159,9 @@ class Admin:
         else:
             return False
 
+    @staticmethod
     def is_valid(id, password):
-        jsonfile = open("admin.json", "r")
+        jsonfile = open("admin.json", "r+")
         mydata = json.load(jsonfile)
         jsonfile.close()
         for key in mydata:
@@ -166,16 +169,18 @@ class Admin:
                 admin = Admin(key['name'], key['id'], key['password'])
                 return admin
 
+    @staticmethod
     def unique(id):
-        with open("admin.json", 'r') as j:
+        with open("admin.json", 'r+') as j:
             mydata = json.load(j)
         for key in mydata:
             if key["id"] == id:
                 return True
         return False
 
+    @staticmethod
     def view_transaction(account_no):
-        with open("transaction.csv", 'r') as file:
+        with open("transaction.csv", 'r+') as file:
             csvreader = csv.reader(file)
             for row in csvreader:
                 if row[0] == account_no:
@@ -183,7 +188,7 @@ class Admin:
         file.close()
 
     def show_profile(self):
-        with open("admin.json", 'r') as j:
+        with open("admin.json", 'r+') as j:
             mydata = json.load(j)
         for key in mydata:
             if key["id"] == self.id:
